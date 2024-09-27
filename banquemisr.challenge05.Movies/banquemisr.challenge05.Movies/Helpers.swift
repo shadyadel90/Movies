@@ -5,4 +5,14 @@
 //  Created by Shady Adel on 27/09/2024.
 //
 
-import Foundation
+import UIKit
+
+class Helpers {
+    
+   static func configureTabBarAppearance(for tabBarItem: UITabBarItem) {
+        let appearance = UITabBarAppearance()
+        appearance.backgroundColor = .systemIndigo
+        tabBarItem.standardAppearance = appearance
+    }
+    
+}
