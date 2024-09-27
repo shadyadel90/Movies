@@ -20,19 +20,22 @@
                         <rect key="frame" x="9" y="10" width="445" height="128"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="m1V-ZQ-oBf">
-                                <rect key="frame" x="0.0" y="4" width="130" height="120"/>
+                                <rect key="frame" x="0.0" y="4" width="105" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="vf0-Ew-9Bx"/>
+                                </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="FyL-lu-kb1">
-                                <rect key="frame" x="150" y="0.0" width="295" height="128"/>
+                                <rect key="frame" x="125" y="0.0" width="320" height="128"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UrB-dw-Avy">
-                                        <rect key="frame" x="0.0" y="0.0" width="295" height="60"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kc9-5S-QYE">
-                                        <rect key="frame" x="0.0" y="68" width="295" height="60"/>
+                                        <rect key="frame" x="0.0" y="68" width="320" height="60"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -44,7 +47,7 @@
                             <constraint firstAttribute="trailing" secondItem="FyL-lu-kb1" secondAttribute="trailing" id="8th-hF-xva"/>
                             <constraint firstItem="FyL-lu-kb1" firstAttribute="top" secondItem="b81-tO-nag" secondAttribute="top" id="C0m-gx-8VB"/>
                             <constraint firstAttribute="bottom" secondItem="FyL-lu-kb1" secondAttribute="bottom" id="YYI-Gd-f9l"/>
-                            <constraint firstItem="FyL-lu-kb1" firstAttribute="leading" secondItem="b81-tO-nag" secondAttribute="leading" constant="150" id="jDj-Iz-hLq"/>
+                            <constraint firstItem="FyL-lu-kb1" firstAttribute="leading" secondItem="b81-tO-nag" secondAttribute="leading" constant="125" id="jDj-Iz-hLq"/>
                         </constraints>
                     </stackView>
                 </subviews>

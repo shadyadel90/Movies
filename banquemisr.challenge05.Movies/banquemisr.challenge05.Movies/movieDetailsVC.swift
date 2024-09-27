@@ -12,11 +12,16 @@ class movieDetailsVC: UIViewController {
     
     @IBOutlet weak var lblGenre: UILabel!
     
-    var movie: String = ""
+    var movie: Movie?
+    var image: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        img.image = UIImage(systemName: movie)
+        img.image = image
+        lblTitle.text = movie?.title
+        lblreleaseDate.text = movie?.release_date
+        lblGenre.text = "\(String(describing: movie?.genre_ids))"
+        txtOverView.text = movie?.overview
     }
     
 
