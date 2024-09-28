@@ -4,7 +4,6 @@ struct result: Decodable {
     let results: [Movie]
 }
 
-
 struct Movie: Decodable {
     let genre_ids: [Int]?
     let popularity: Double?
