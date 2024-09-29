@@ -2,11 +2,12 @@ import XCTest
 @testable import banquemisr_challenge05_Movies
 
 final class NetworkServiceTests: XCTestCase {
-
+    let network: NetworkRepository = NetworkService()
+    
     func testDownloadImageValidURL() {
         let expectation = self.expectation(description: "Downloading image")
         
-        NetworkService.downloadImage(imageUrl: "\(Constants.imgUrl)\(Constants.validImageUrl)\(Constants.apiKey)") { result in
+        network.downloadImage(imageUrl: "\(Constants.imgUrl)\(Constants.validImageUrl)\(Constants.apiKey)") { result in
             switch result {
             case .success(let image):
                 XCTAssertNotNil(image, "Image should not be nil")
@@ -22,7 +23,7 @@ final class NetworkServiceTests: XCTestCase {
     func testDownloadImageInvalidURL() {
         let expectation = self.expectation(description: "Downloading image with invalid URL")
         
-        NetworkService.downloadImage(imageUrl: "invalidImageURL") { result in
+        network.downloadImage(imageUrl: "invalidImageURL") { result in
             switch result {
             case .success:
                 XCTFail("Expected failure but got a successful response")
@@ -38,7 +39,7 @@ final class NetworkServiceTests: XCTestCase {
     func testFetchDataFromApiValidResponse() {
         let expectation = self.expectation(description: "Fetching movies from API")
         
-        NetworkService.fetchDataFromApi(movieListType: .popular) { result in
+        network.fetchDataFromApi(movieListType: .popular) { result in
             switch result {
             case .success(let movies):
                 XCTAssertFalse(movies.isEmpty, "Movies array should not be empty")
@@ -54,7 +55,7 @@ final class NetworkServiceTests: XCTestCase {
     func testFetchDataFromApiInvalidResponse() {
         let expectation = self.expectation(description: "Fetching movies from API with invalid response")
         
-        NetworkService.fetchDataFromApi(movieListType: .invalidType) { result in
+        network.fetchDataFromApi(movieListType: .invalidType) { result in
             switch result {
             case .success:
                 XCTFail("Expected failure but got a successful response")

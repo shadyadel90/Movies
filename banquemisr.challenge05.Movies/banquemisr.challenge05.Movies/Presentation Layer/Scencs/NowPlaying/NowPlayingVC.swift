@@ -9,7 +9,9 @@ class NowPlayingVC: UITableViewController {
         self.tableView.register(UINib(nibName: "MovieTableViewCell", bundle: nil), forCellReuseIdentifier: "MovieTableViewCell")
         
         viewModel.reloadTable = { [weak self] in
-            self?.tableView.reloadData()
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
         }
         
         viewModel.fetchNowPlayingMovies()
@@ -40,21 +42,25 @@ class NowPlayingVC: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieTableViewCell", for: indexPath) as! MovieTableViewCell
         
-        let movie = viewModel.didSelectMovie(at: indexPath.row)
-        cell.lblTitle.text = movie?.title ?? "Unknown"
-        cell.lblReleaseDate.text = movie?.release_date ?? "Unknown"
-
-        if indexPath.row < viewModel.numberOfMovies(){
-            cell.img.image = viewModel.didSelectImage(at: indexPath.row)
-        } else {
-            cell.img.image = UIImage(systemName: "photo")
+        guard let movie = viewModel.didSelectMovie(at: indexPath.row) else {
+            cell.titleLabel.text = "Unknown"
+            cell.releaseDateLabel.text = "Unknown"
+            cell.posterImageView.image = UIImage(systemName: "photo")
+            return cell
         }
+        
+        cell.titleLabel.text = movie.title ?? "Unknown"
+        cell.releaseDateLabel.text = movie.release_date ?? "Unknown"
+        cell.posterImageView.image = viewModel.didSelectImage(at: indexPath.row) ?? UIImage(systemName: "photo")
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailsVC = storyboard?.instantiateViewController(withIdentifier: "movieDetailsVC") as! movieDetailsVC
+        guard let detailsVC = storyboard?.instantiateViewController(withIdentifier: "MovieDetailsVC") as? MovieDetailsVC else {
+            return
+        }
+        
         detailsVC.movie = viewModel.didSelectMovie(at: indexPath.row)
         detailsVC.image = viewModel.didSelectImage(at: indexPath.row)
         self.navigationController?.pushViewController(detailsVC, animated: true)

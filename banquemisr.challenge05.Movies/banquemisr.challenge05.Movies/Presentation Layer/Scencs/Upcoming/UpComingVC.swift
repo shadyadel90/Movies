@@ -8,10 +8,12 @@ class UpComingVC: UITableViewController {
         self.tableView.register(UINib(nibName: "MovieTableViewCell", bundle: nil), forCellReuseIdentifier: "MovieTableViewCell")
 
         viewModel.reloadTable = { [weak self] in
-            self?.tableView.reloadData()
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
         }
         
-        viewModel.fetchNowPlayingMovies()
+        viewModel.fetchUpcomingMovies() 
         
         viewModel.showError = { [weak self] errorMessage in
             DispatchQueue.main.async {
@@ -40,15 +42,15 @@ class UpComingVC: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieTableViewCell", for: indexPath) as! MovieTableViewCell
         
         let movie = viewModel.didSelectMovie(at: indexPath.row)
-        cell.lblTitle.text = movie?.title ?? "Unknown"
-        cell.lblReleaseDate.text = movie?.release_date ?? "Unknown"
-        cell.img.image = viewModel.didSelectImage(at: indexPath.row)
+        cell.titleLabel.text = movie?.title ?? "Unknown"
+        cell.releaseDateLabel.text = movie?.release_date ?? "Unknown"
+        cell.posterImageView.image = viewModel.didSelectImage(at: indexPath.row)
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailsVC = storyboard?.instantiateViewController(withIdentifier: "movieDetailsVC") as! movieDetailsVC
+        guard let detailsVC = storyboard?.instantiateViewController(withIdentifier: "MovieDetailsVC") as? MovieDetailsVC else { return }
         detailsVC.movie = viewModel.didSelectMovie(at: indexPath.row)
         detailsVC.image = viewModel.didSelectImage(at: indexPath.row)
         self.navigationController?.pushViewController(detailsVC, animated: true)
