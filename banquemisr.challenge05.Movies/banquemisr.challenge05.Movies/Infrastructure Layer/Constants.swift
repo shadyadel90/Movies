@@ -1,16 +1,10 @@
-//
-//  Constants.swift
-//  banquemisr.challenge05.Movies
-//
-//  Created by Shady Adel on 27/09/2024.
-//
-
 import Foundation
 
 enum movieListType {
     case nowPlaying
     case popular
     case upcoming
+    case invalidType
     
     var description: String {
         switch self {
@@ -20,6 +14,8 @@ enum movieListType {
             return "popular"
         case .upcoming:
             return "upcoming"
+        case .invalidType:
+            return "invalidType"
         }
     }
 }
@@ -31,6 +27,8 @@ struct Constants {
     static let apiKey = "?api_key=b855ec2e0f4c2278145a1be962d0d973"
     
     static let imgUrl = "https://image.tmdb.org/t/p/w200"
+    
+    static let validImageUrl = "/58QT4cPJ2u2TqWZkterDq9q4yxQ.jpg"
     
     static let genres: [Int: String] = [
         28: "Action",

@@ -1,14 +1,17 @@
 import UIKit
 
-class UpcomingViewModel {
+class NowPlayingViewModel {   
+    
     private var movies: [Movie] = []
     private var imgs: [UIImage] = []
     var reloadTable: (() -> Void)?
     var showError: ((String) -> Void)?
+    let network: NetworkRespository = NetworkService()
     
     func fetchNowPlayingMovies() {
-        NetworkService.fetchDataFromApi(movieListType: .upcoming) { [weak self] result in
-            guard let self = self else {return}
+        
+        network.fetchDataFromApi(movieListType: .nowPlaying) { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case .success(let movies):
                 self.movies = movies
@@ -25,22 +28,21 @@ class UpcomingViewModel {
         for item in movies {
             guard let posterPath = item.poster_path else { continue }
             dispatchGroup.enter()
-            NetworkService.downloadImage(imageUrl: "\(Constants.imgUrl)\(posterPath)\(Constants.apiKey)") { [weak self] result in
+            network.downloadImage(imageUrl: "\(Constants.imgUrl)\(posterPath)\(Constants.apiKey)") { result in
                 switch result {
                 case .success(let image):
-                    self?.imgs.append(image)
+                    self.imgs.append(image)
                 case .failure(let error):
                     print(error)
                 }
                 dispatchGroup.leave()
             }
         }
-
-        dispatchGroup.notify(queue: .main) { [weak self] in
-            self?.reloadTable?()
+        dispatchGroup.notify(queue: .main) {
+            self.reloadTable?()
         }
     }
-
+    
     func numberOfMovies() -> Int {
         return movies.count
     }
