@@ -1,22 +1,29 @@
 import UIKit
 
-class UpComingVC: UITableViewController {
-    private var viewModel = UpcomingViewModel()
-
+class NowPlayingVC: UITableViewController {
+    
+    private var viewModel = NowPlayingViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.register(UINib(nibName: "MovieTableViewCell", bundle: nil), forCellReuseIdentifier: "MovieTableViewCell")
-
+        
         viewModel.reloadTable = { [weak self] in
             self?.tableView.reloadData()
         }
         
         viewModel.fetchNowPlayingMovies()
+        
+        viewModel.showError = { [weak self] errorMessage in
+            DispatchQueue.main.async {
+                self?.presentErrorAlert(message: errorMessage)
+            }
+        }
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.tabBarController?.navigationItem.title = "Upcoming"
+        self.tabBarController?.navigationItem.title = "Now Playing"
         Helpers.configureTabBarAppearance(for: tabBarItem)
     }
 
@@ -33,18 +40,23 @@ class UpComingVC: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieTableViewCell", for: indexPath) as! MovieTableViewCell
         
-        let movie = viewModel.movie(at: indexPath.row)
-        cell.lblTitle.text = movie.title
-        cell.lblReleaseDate.text = movie.release_date
-        cell.img.image = viewModel.image(at: indexPath.row)
+        let movie = viewModel.didSelectMovie(at: indexPath.row)
+        cell.lblTitle.text = movie?.title ?? "Unknown"
+        cell.lblReleaseDate.text = movie?.release_date ?? "Unknown"
+
+        if indexPath.row < viewModel.numberOfMovies(){
+            cell.img.image = viewModel.didSelectImage(at: indexPath.row)
+        } else {
+            cell.img.image = UIImage(systemName: "photo")
+        }
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailsVC = storyboard?.instantiateViewController(withIdentifier: "movieDetailsVC") as! movieDetailsVC
-        detailsVC.movie = viewModel.movie(at: indexPath.row)
-        detailsVC.image = viewModel.image(at: indexPath.row)
+        detailsVC.movie = viewModel.didSelectMovie(at: indexPath.row)
+        detailsVC.image = viewModel.didSelectImage(at: indexPath.row)
         self.navigationController?.pushViewController(detailsVC, animated: true)
     }
 }

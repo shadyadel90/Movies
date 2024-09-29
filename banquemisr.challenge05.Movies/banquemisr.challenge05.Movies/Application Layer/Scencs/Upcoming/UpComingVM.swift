@@ -4,15 +4,17 @@ class UpcomingViewModel {
     private var movies: [Movie] = []
     private var imgs: [UIImage] = []
     var reloadTable: (() -> Void)?
+    var showError: ((String) -> Void)?
     
     func fetchNowPlayingMovies() {
         NetworkService.fetchDataFromApi(movieListType: .upcoming) { [weak self] result in
+            guard let self = self else {return}
             switch result {
             case .success(let movies):
-                self?.movies = movies
-                self?.fetchImages()
-            case .failure(let error):
-                print(error)
+                self.movies = movies
+                self.fetchImages()
+            case .failure:
+                self.showError?(ErrorMessage.unableToComplete.rawValue)
             }
         }
     }
@@ -43,11 +45,17 @@ class UpcomingViewModel {
         return movies.count
     }
     
-    func movie(at index: Int) -> Movie {
+    func didSelectMovie(at index: Int) -> Movie? {
+        guard index >= 0 && index < movies.count else {
+            return nil
+        }
         return movies[index]
     }
     
-    func image(at index: Int) -> UIImage? {
-        return index < imgs.count ? imgs[index] : UIImage(systemName: "photo")
+    func didSelectImage(at index: Int) -> UIImage? {
+        guard index >= 0 && index < imgs.count else {
+            return nil
+        }
+        return imgs[index]
     }
 }
