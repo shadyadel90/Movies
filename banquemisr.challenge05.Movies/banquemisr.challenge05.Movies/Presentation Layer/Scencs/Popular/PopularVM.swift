@@ -7,7 +7,7 @@ class PopularViewModel {
     var showError: ((String) -> Void)?
     let network: NetworkRepository = NetworkService()
 
-    func fetchNowPlayingMovies() {
+    func fetchPopularMovies() {
         network.fetchDataFromApi(movieListType: .popular) { [weak self] result in
             guard let self = self else { return }
             switch result {

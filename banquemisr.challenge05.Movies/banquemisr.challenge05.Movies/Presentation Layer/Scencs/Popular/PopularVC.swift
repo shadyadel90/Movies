@@ -15,7 +15,7 @@ class PopularVC: UITableViewController {
             }
         }
 
-        viewModel.fetchNowPlayingMovies()
+        viewModel.fetchPopularMovies()
         
         viewModel.showError = { [weak self] errorMessage in
             DispatchQueue.main.async {
