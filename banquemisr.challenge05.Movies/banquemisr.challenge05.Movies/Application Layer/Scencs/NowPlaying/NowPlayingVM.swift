@@ -1,18 +1,21 @@
 import UIKit
 
-class PopularViewModel {
-    var movies: [Movie] = []
-    var imgs: [UIImage] = []
+class NowPlayingViewModel {    
+    private var movies: [Movie] = []
+    private var imgs: [UIImage] = []
     var reloadTable: (() -> Void)?
+    var showError: ((String) -> Void)?
     
     func fetchNowPlayingMovies() {
-        NetworkService.fetchDataFromApi(movieListType: .popular) { result in
+        
+        NetworkService.fetchDataFromApi(movieListType: .nowPlaying) { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case .success(let movies):
                 self.movies = movies
                 self.fetchImages()
-            case .failure(let error):
-                print(error)
+            case .failure:
+                self.showError?(ErrorMessage.unableToComplete.rawValue)
             }
         }
     }
@@ -33,9 +36,26 @@ class PopularViewModel {
                 dispatchGroup.leave()
             }
         }
-
         dispatchGroup.notify(queue: .main) {
             self.reloadTable?()
         }
+    }
+    
+    func numberOfMovies() -> Int {
+        return movies.count
+    }
+    
+    func didSelectMovie(at index: Int) -> Movie? {
+        guard index >= 0 && index < movies.count else {
+            return nil
+        }
+        return movies[index]
+    }
+    
+    func didSelectImage(at index: Int) -> UIImage? {
+        guard index >= 0 && index < imgs.count else {
+            return nil
+        }
+        return imgs[index]
     }
 }

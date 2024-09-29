@@ -12,6 +12,12 @@ class PopularVC: UITableViewController {
         }
 
         viewModel.fetchNowPlayingMovies()
+        
+        viewModel.showError = { [weak self] errorMessage in
+            DispatchQueue.main.async {
+                self?.presentErrorAlert(message: errorMessage)
+            }
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -27,18 +33,18 @@ class PopularVC: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.movies.count
+        return viewModel.numberOfMovies()
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieTableViewCell", for: indexPath) as! MovieTableViewCell
         
-        let movie = viewModel.movies[indexPath.row]
-        cell.lblTitle.text = movie.title
-        cell.lblReleaseDate.text = movie.release_date
+        let movie = viewModel.didSelectMovie(at: indexPath.row)
+        cell.lblTitle.text = movie?.title ?? "Unknown"
+        cell.lblReleaseDate.text = movie?.release_date ?? "Unknown"
 
-        if indexPath.row < viewModel.imgs.count {
-            cell.img.image = viewModel.imgs[indexPath.row]
+        if indexPath.row < viewModel.numberOfMovies(){
+            cell.img.image = viewModel.didSelectImage(at: indexPath.row)
         } else {
             cell.img.image = UIImage(systemName: "photo")
         }
@@ -48,8 +54,8 @@ class PopularVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailsVC = storyboard?.instantiateViewController(withIdentifier: "movieDetailsVC") as! movieDetailsVC
-        detailsVC.movie = viewModel.movies[indexPath.row]
-        detailsVC.image = viewModel.imgs[indexPath.row]
+        detailsVC.movie = viewModel.didSelectMovie(at: indexPath.row)
+        detailsVC.image = viewModel.didSelectImage(at: indexPath.row)
         self.navigationController?.pushViewController(detailsVC, animated: true)
     }
 }

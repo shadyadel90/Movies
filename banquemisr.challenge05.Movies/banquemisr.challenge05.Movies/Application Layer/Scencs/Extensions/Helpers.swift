@@ -15,9 +15,14 @@ class Helpers {
         tabBarItem.standardAppearance = appearance
     }
     
-    static func convertGenreIdsToString(ids: [Int]) -> String {
-        let genreNames = ids.compactMap { Constants.genres[$0] }
-        return genreNames.joined(separator: ", ")
+    static func convertGenreIdsToString(ids: [Int]) -> String? {
+        if !ids.isEmpty {
+            let genreNames = ids.compactMap { Constants.genres[$0] }
+            return genreNames.joined(separator: ", ")
+        }
+        else {
+            return nil
+        }
     }
     
 }

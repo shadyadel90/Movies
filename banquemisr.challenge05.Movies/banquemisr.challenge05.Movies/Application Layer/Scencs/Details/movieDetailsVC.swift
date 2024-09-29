@@ -17,13 +17,11 @@ class movieDetailsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let movie = movie, let image = image{
-            img.image = image
-            lblTitle.text = "Name: \(movie.title ?? "")"
-            lblreleaseDate.text = "Released At: \(movie.release_date ?? "")"
-            lblGenre.text = "Genres: \(Helpers.convertGenreIdsToString(ids: (movie.genre_ids!)))"
-            lblOverView.text = "Overview: \(movie.overview ?? "")"
-        }
+        img.image = image ?? UIImage(systemName: "photo")
+        lblTitle.text = "Name: \(movie?.title ?? "Unknown")"
+        lblreleaseDate.text = "Released At: \(movie?.release_date ?? "Unknown")"
+        lblGenre.text = "Genres: \(Helpers.convertGenreIdsToString(ids: (movie?.genre_ids)!) ?? "Unknown")"
+        lblOverView.text = "Overview: \(movie?.overview ?? "Unknown")"
         
     }
     
