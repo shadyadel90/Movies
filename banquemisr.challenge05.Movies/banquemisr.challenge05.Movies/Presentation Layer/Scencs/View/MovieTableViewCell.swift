@@ -9,11 +9,11 @@ import UIKit
 
 class MovieTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var img: UIImageView!
+    @IBOutlet weak var posterImageView: UIImageView!
     
-    @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
     
-    @IBOutlet weak var lblReleaseDate: UILabel!
+    @IBOutlet weak var releaseDateLabel: UILabel!
    
     override func awakeFromNib() {
         super.awakeFromNib()

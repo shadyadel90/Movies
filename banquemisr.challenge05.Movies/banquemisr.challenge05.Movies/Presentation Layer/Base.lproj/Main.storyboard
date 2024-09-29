@@ -107,7 +107,7 @@
         <!--Movie DetailsVC-->
         <scene sceneID="Cc3-iU-qve">
             <objects>
-                <viewController storyboardIdentifier="movieDetailsVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="A1I-lR-g2P" customClass="movieDetailsVC" customModule="banquemisr_challenge05_Movies" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MovieDetailsVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="A1I-lR-g2P" customClass="MovieDetailsVC" customModule="banquemisr_challenge05_Movies" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GjR-29-JpC">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -168,11 +168,11 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="img" destination="SpL-MT-ERk" id="a0H-pN-Uuu"/>
-                        <outlet property="lblGenre" destination="JOK-v2-Lfu" id="bjA-vM-b7G"/>
-                        <outlet property="lblOverView" destination="DSL-xh-Vx3" id="Kac-nT-4Lo"/>
-                        <outlet property="lblTitle" destination="Q6K-gw-AH4" id="EAZ-fk-SOL"/>
-                        <outlet property="lblreleaseDate" destination="apl-yC-hAC" id="EPt-fv-jfT"/>
+                        <outlet property="img" destination="SpL-MT-ERk" id="zwy-wC-TYx"/>
+                        <outlet property="lblGenre" destination="JOK-v2-Lfu" id="qkX-MR-CL3"/>
+                        <outlet property="lblOverView" destination="DSL-xh-Vx3" id="TqL-Wd-dRN"/>
+                        <outlet property="lblReleaseDate" destination="apl-yC-hAC" id="2qd-BB-k5b"/>
+                        <outlet property="titleLabel" destination="Q6K-gw-AH4" id="qzK-mz-oRQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qFf-r0-Iyg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

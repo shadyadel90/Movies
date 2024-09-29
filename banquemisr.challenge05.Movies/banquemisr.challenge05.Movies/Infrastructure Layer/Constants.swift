@@ -1,6 +1,6 @@
 import Foundation
 
-enum movieListType {
+enum MovieListType {
     case nowPlaying
     case popular
     case upcoming
@@ -22,12 +22,9 @@ enum movieListType {
 
 struct Constants {
     
-    static let baseUrl =  "https://api.themoviedb.org/3/movie/"
-    
+    static let baseUrl = "https://api.themoviedb.org/3/movie/"
     static let apiKey = "?api_key=b855ec2e0f4c2278145a1be962d0d973"
-    
     static let imgUrl = "https://image.tmdb.org/t/p/w200"
-    
     static let validImageUrl = "/58QT4cPJ2u2TqWZkterDq9q4yxQ.jpg"
     
     static let genres: [Int: String] = [
@@ -51,5 +48,4 @@ struct Constants {
         10752: "War",
         37: "Western"
     ]
-    
 }

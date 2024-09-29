@@ -62,9 +62,9 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="img" destination="m1V-ZQ-oBf" id="KQQ-hR-S2R"/>
-                <outlet property="lblReleaseDate" destination="kc9-5S-QYE" id="OTZ-MR-fC4"/>
-                <outlet property="lblTitle" destination="UrB-dw-Avy" id="qUt-iI-HYc"/>
+                <outlet property="posterImageView" destination="m1V-ZQ-oBf" id="kvT-Pt-o5X"/>
+                <outlet property="releaseDateLabel" destination="kc9-5S-QYE" id="4Jg-0I-7B9"/>
+                <outlet property="titleLabel" destination="UrB-dw-Avy" id="fzE-SH-hnh"/>
             </connections>
             <point key="canvasLocation" x="187.02290076335876" y="55.633802816901408"/>
         </tableViewCell>

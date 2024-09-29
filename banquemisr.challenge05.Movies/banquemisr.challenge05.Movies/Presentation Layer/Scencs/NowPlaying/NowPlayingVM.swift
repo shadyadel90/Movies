@@ -1,15 +1,14 @@
 import UIKit
 
-class NowPlayingViewModel {   
+class NowPlayingViewModel {
     
     private var movies: [Movie] = []
-    private var imgs: [UIImage] = []
+    private var images: [UIImage] = []
     var reloadTable: (() -> Void)?
     var showError: ((String) -> Void)?
-    let network: NetworkRespository = NetworkService()
-    
+    var network: NetworkRepository = NetworkService()
+
     func fetchNowPlayingMovies() {
-        
         network.fetchDataFromApi(movieListType: .nowPlaying) { [weak self] result in
             guard let self = self else { return }
             switch result {
@@ -31,13 +30,15 @@ class NowPlayingViewModel {
             network.downloadImage(imageUrl: "\(Constants.imgUrl)\(posterPath)\(Constants.apiKey)") { result in
                 switch result {
                 case .success(let image):
-                    self.imgs.append(image)
+                    self.images.append(image)
                 case .failure(let error):
                     print(error)
+                    self.showError?(ErrorMessage.invalidData .rawValue)
                 }
                 dispatchGroup.leave()
             }
         }
+        
         dispatchGroup.notify(queue: .main) {
             self.reloadTable?()
         }
@@ -55,9 +56,9 @@ class NowPlayingViewModel {
     }
     
     func didSelectImage(at index: Int) -> UIImage? {
-        guard index >= 0 && index < imgs.count else {
+        guard index >= 0 && index < images.count else {
             return nil
         }
-        return imgs[index]
+        return images[index]
     }
 }

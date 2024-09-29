@@ -3,7 +3,7 @@ import UIKit
 
 class CoreDataManager: CoreDataRepository {
     func saveMovies(_ movies: [Movie]) {
-        let x = 5
+        _ = 5
     }
     
     func fetchMovies() -> [Movie] {

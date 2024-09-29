@@ -2,9 +2,9 @@
 
 import UIKit
 
-protocol NetworkRespository {
+protocol NetworkRepository {
     
     func downloadImage(imageUrl: String, completion: @escaping (Result<UIImage, Error>) -> Void)
     
-    func fetchDataFromApi(movieListType: movieListType, completion: @escaping (Result<[Movie], Error>) -> Void)
+    func fetchDataFromApi(movieListType: MovieListType, completion: @escaping (Result<[Movie], Error>) -> Void)
 }
