@@ -20,8 +20,8 @@
  
   1.	Network Layer: A simple request manager handles data fetching from the API.
   2.	Image Caching: Extensions are used to download and cache images efficiently, without relying on external frameworks.
-  3.	UIKit: The app is built using UIKit rather than SwiftUI.
-  4.	MVVM & Domain-Driven Design: You’ve structured the app to be maintainable and reusable by using the MVVM pattern combined with Domain-Driven Design principles.
+  3.	UIKit: The app is built using UIKit.
+  4.	MVVM & Domain-Driven Design: the app is maintainable and reusable by using the MVVM pattern combined with Domain-Driven Design principles.
   5.	Apple Libraries Only: No third-party dependencies—relying solely on Apple’s frameworks.
   6.	Unit Tests: Unit tests have been implemented to ensure code reliability.
   7.	Core Data: Used for offline caching to persist data when the app is offline.
