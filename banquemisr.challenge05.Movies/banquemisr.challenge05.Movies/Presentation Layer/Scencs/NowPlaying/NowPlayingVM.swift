@@ -7,19 +7,20 @@ class NowPlayingViewModel {
     var reloadTable: (() -> Void)?
     var showError: ((String) -> Void)?
     var network: NetworkRepository = NetworkService()
+    let persistance: CoreDataRepository = CoreDataManager()
 
     func fetchNowPlayingMovies() {
-        network.fetchDataFromApi(movieListType: .nowPlaying) { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case .success(let movies):
-                self.movies = movies
-                self.fetchImages()
-            case .failure:
-                self.showError?(ErrorMessage.unableToComplete.rawValue)
+            network.fetchDataFromApi(movieListType: .nowPlaying) { [weak self] result in
+                guard let self = self else { return }
+                switch result {
+                case .success(let movies):
+                    self.movies = movies
+                    self.fetchImages()
+                case .failure:
+                    self.showError?(ErrorMessage.unableToComplete.rawValue)
+                }
             }
         }
-    }
 
     private func fetchImages() {
         let dispatchGroup = DispatchGroup()

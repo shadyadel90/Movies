@@ -33,6 +33,7 @@
 		F22ABF8F2CA9D8FA0063B4B2 /* NetworkRespository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22ABF8E2CA9D8FA0063B4B2 /* NetworkRespository.swift */; };
 		F22ABF922CA9DA0C0063B4B2 /* CoreDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22ABF912CA9DA0C0063B4B2 /* CoreDataRepository.swift */; };
 		F22ABF942CA9DD570063B4B2 /* NowPlayingViewModelUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22ABF932CA9DD570063B4B2 /* NowPlayingViewModelUnitTests.swift */; };
+		F22ABF992CAA0AC60063B4B2 /* NetworkChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22ABF982CAA0AC60063B4B2 /* NetworkChecker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		F22ABF8E2CA9D8FA0063B4B2 /* NetworkRespository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRespository.swift; sourceTree = "<group>"; };
 		F22ABF912CA9DA0C0063B4B2 /* CoreDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataRepository.swift; sourceTree = "<group>"; };
 		F22ABF932CA9DD570063B4B2 /* NowPlayingViewModelUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingViewModelUnitTests.swift; sourceTree = "<group>"; };
+		F22ABF982CAA0AC60063B4B2 /* NetworkChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkChecker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +213,7 @@
 		F22ABF7F2CA8B23C0063B4B2 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				F22ABF972CAA0AB80063B4B2 /* Connection */,
 				F22ABF812CA8B24A0063B4B2 /* Local */,
 				F22ABF802CA8B2420063B4B2 /* Remote */,
 			);
@@ -288,6 +291,14 @@
 				F22ABF912CA9DA0C0063B4B2 /* CoreDataRepository.swift */,
 			);
 			path = Repository;
+			sourceTree = "<group>";
+		};
+		F22ABF972CAA0AB80063B4B2 /* Connection */ = {
+			isa = PBXGroup;
+			children = (
+				F22ABF982CAA0AC60063B4B2 /* NetworkChecker.swift */,
+			);
+			path = Connection;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -403,6 +414,7 @@
 				F22ABF352CA71B070063B4B2 /* banquemisr_challenge05_Movies.xcdatamodeld in Sources */,
 				F22ABF6A2CA72A330063B4B2 /* Helpers.swift in Sources */,
 				F22ABF922CA9DA0C0063B4B2 /* CoreDataRepository.swift in Sources */,
+				F22ABF992CAA0AC60063B4B2 /* NetworkChecker.swift in Sources */,
 				F22ABF6C2CA72B100063B4B2 /* Constants.swift in Sources */,
 				F22ABF5E2CA71CC20063B4B2 /* NowPlayingVC.swift in Sources */,
 				F22ABF602CA71CDF0063B4B2 /* PopularVC.swift in Sources */,
