@@ -1,10 +1,3 @@
-//
-//  Errors.swift
-//  banquemisr.challenge05.Movies
-//
-//  Created by Shady Adel on 29/09/2024.
-//
-
 import Foundation
 
 enum ErrorMessage: String, Error{

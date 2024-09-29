@@ -1,8 +1,8 @@
 import UIKit
 
-class NetworkService {
+class NetworkService: NetworkRespository {
     
-    static func downloadImage(imageUrl: String, completion: @escaping (Result<UIImage, Error>) -> Void) {
+    func downloadImage(imageUrl: String, completion: @escaping (Result<UIImage, Error>) -> Void) {
         guard let url = URL(string: "\(Constants.imgUrl)\(imageUrl)") else {
             completion(.failure(ErrorMessage.unableToComplete))
             return
@@ -30,7 +30,7 @@ class NetworkService {
         }.resume()
     }
     
-    static func fetchDataFromApi(movieListType: movieListType, completion: @escaping (Result<[Movie], Error>) -> Void) {
+    func fetchDataFromApi(movieListType: movieListType, completion: @escaping (Result<[Movie], Error>) -> Void) {
         
         guard let url = URL(string: "\(Constants.baseUrl)\(movieListType.description)\(Constants.apiKey)") else {
             completion(.failure(ErrorMessage.unableToComplete))
