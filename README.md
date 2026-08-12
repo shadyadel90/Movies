@@ -1,45 +1,40 @@
-# Banquemisr.challenge05
+# Movies
 
- Features
- ==============
- 
- 1.	API-Powered: The app integrates with the TMDb API to fetch movie data.
- 2.	Movie Details View: When users select a movie, they can view its detailed information.
- 3.	Offline Caching: When there is no internet connection, the app retrieves data from cached memory, ensuring a smooth offline experience.
+UIKit technical challenge project that browses TMDb movie lists (Now Playing, Popular, Upcoming), shows movie details, and caches results for offline use.
 
+## Highlights
 
+- UIKit with MVVM and Domain-Driven Design layering
+- TMDb networking via `URLSession`
+- Core Data offline caching with connectivity checks
+- Image download/caching without third-party libraries
+- Light and dark mode support
+- XCTest coverage for networking and view-model behavior
 
- ## Notable Points:
- 
- - Light and Dark Mode Support: The UI adapts to both light and dark modes.
- - No External Libraries: You’ve built the app without using third-party libraries like Cocoapods, Carthage, or SPM.
- - Connection Check for Offline Caching: The app monitors the internet connection to determine whether to fetch data online or use cached data.
- 
+## Architecture
 
+- **Presentation** — view controllers, view models, cells
+- **Domain** — movie entities
+- **Infrastructure** — networking, Core Data, constants, connectivity
 
- ## API key setup
+## API key setup
 
- The repository does not contain an API key.
+This repository does not contain an API key.
 
- Create a TMDb API key, then add `TMDB_API_KEY` as an environment variable in the Xcode scheme:
+1. Create a TMDb API key.
+2. In Xcode: **Product → Scheme → Edit Scheme → Run → Arguments**.
+3. Add environment variable `TMDB_API_KEY` with your local key.
+4. Build and run.
 
- 1. Open **Product → Scheme → Edit Scheme**.
- 2. Select **Run → Arguments**.
- 3. Under **Environment Variables**, add `TMDB_API_KEY` with your local key.
- 4. Build and run the app.
+Never commit API credentials.
 
- Never commit API credentials to the repository.
+## Tech stack
 
- Technical Implementation: 
- ==============
- 
-  1.	Network Layer: A simple request manager handles data fetching from the API.
-  2.	Image Caching: Extensions are used to download and cache images efficiently, without relying on external frameworks.
-  3.	UIKit: The app is built using UIKit.
-  4.	MVVM & Domain-Driven Design: the app is maintainable and reusable by using the MVVM pattern combined with Domain-Driven Design principles.
-  5.	Apple Libraries Only: No third-party dependencies—relying solely on Apple’s frameworks.
-  6.	Unit Tests: Unit tests have been implemented to ensure code reliability.
-  7.	Core Data: Used for offline caching to persist data when the app is offline.
+Swift, UIKit, MVVM, Domain-Driven Design, Core Data, URLSession, XCTest
 
- 
+## Run locally
 
+1. Clone the repository.
+2. Open `banquemisr.challenge05.Movies/banquemisr.challenge05.Movies.xcodeproj`.
+3. Set `TMDB_API_KEY` in the scheme as above.
+4. Build and run on an iOS Simulator.
