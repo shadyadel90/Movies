@@ -15,6 +15,21 @@
  - No External Libraries: You’ve built the app without using third-party libraries like Cocoapods, Carthage, or SPM.
  - Connection Check for Offline Caching: The app monitors the internet connection to determine whether to fetch data online or use cached data.
  
+
+
+ ## API key setup
+
+ The repository does not contain an API key.
+
+ Create a TMDb API key, then add `TMDB_API_KEY` as an environment variable in the Xcode scheme:
+
+ 1. Open **Product → Scheme → Edit Scheme**.
+ 2. Select **Run → Arguments**.
+ 3. Under **Environment Variables**, add `TMDB_API_KEY` with your local key.
+ 4. Build and run the app.
+
+ Never commit API credentials to the repository.
+
  Technical Implementation: 
  ==============
  
